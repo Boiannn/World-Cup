@@ -11,7 +11,25 @@
 	</div>
 
 	<script id="match-template" type="text/x-handlebars-template">
-	  template content
+	<div	class="jumbotron">
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" aria-valuenow = "0" aria-valuemin="0" aria-valuemax="90" style="width: 60%;">
+			</div>
+		</div>
+
+		<p>
+			{{datetime}}
+		</p>
+
+		<div class="row">
+			<div class="col-xs-6 cold-md-3">
+				<a href="#" class="thumbnail">
+					<img data-src="holder.js/128x128" src="flags/" >
+					{{home_team.country}}
+				</a>
+			</div>
+		</div>
+	</div>
 	</script>
 	
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
