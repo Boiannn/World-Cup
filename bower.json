@@ -1,0 +1,29 @@
+{
+  "name": "World-Cup",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Boiannn/World-Cup",
+  "authors": [
+    "Boyan Donchev <bdd@mail.bg>",
+    "Deyan Yanakiev <kliomba@abv.bg>"
+  ],
+  "description": "Team project from HackBulgaria JS course",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "world-cup",
+    "results"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1"
+  }
+}
