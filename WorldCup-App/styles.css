@@ -1,7 +1,23 @@
-#matches-container {
+#site-wrap {
 	width: 80%;
-	margin: 8px auto;
+	margin: 0 auto;
+	padding: 8px;
+	background-color: #777;
 	text-align: center;
+}
+
+#site-wrap header {
+	background-color: #777;
+	padding: 12px 0;
+	margin: 0;
+	color: #eee;
+}
+
+#site-wrap header h1 {
+	width: 75%;
+	margin: 8px auto;
+	padding-bottom: 6px;
+	border-bottom: 2px solid #ccc;
 }
 
 #matches-container .country {
