@@ -24,13 +24,23 @@
 	color: #eee;
 }
 
-#matches-container .country {
-	font-size: 1.3rem;
+#matches-container .row .country,
+#matches-container .row .score {
+	font-size: 1.8rem;
 	font-weight: bold;
 	letter-spacing: 1px;
 }
 
-#matches-container .score {
-	font-size: 1.8rem;
-	font-weight: bold;
+#matches-container .row .col-xs-2 {
+	height: 208px;
+}
+
+#matches-container .row .col-xs-2 p {
+	line-height: 200px;
+}
+
+@media only screen and (max-width: 800px) {
+	#site-wrap {
+		width: 100%;
+	}
 }

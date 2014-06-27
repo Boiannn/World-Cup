@@ -4,6 +4,7 @@ $(document).ready(function() {
   $.getJSON('http://worldcup.sfg.io/matches', function(matches) {
 
     generateMatches(matches);
+    $('[data-toggle="popover"]').popover();
 
   });
 
