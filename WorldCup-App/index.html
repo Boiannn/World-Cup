@@ -38,7 +38,7 @@
 					data-toggle="popover"
 					data-placement="bottom"
 					title="{{home_team.country}}"
-					data-content="RESULTS HERE">
+					data-content="{{displayResults home_team}}">
 						<img src="flags/{{home_team.code}}.png" />
 					</a>
 					<span class="score">{{home_team.goals}}</span>
@@ -52,7 +52,7 @@
 					data-toggle="popover"
 					data-placement="bottom"
 					title="{{away_team.country}}"
-					data-content="RESULTS HERE">
+					data-content="{{displayResults away_team}}">
 						<img src="flags/{{away_team.code}}.png" />
 					</a>
 					<span class="score">{{away_team.goals}}</span>
@@ -69,6 +69,7 @@
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="bower_components/handlebars/handlebars.min.js"></script>
+	<script src="bower_components/lodash/dist/lodash.min.js"></script>
 	<script src="script/handlebars-helpers.js"></script>
 	<script src="script/app.js"></script>
 </body>
