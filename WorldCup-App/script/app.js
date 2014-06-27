@@ -21,7 +21,7 @@ $(document).ready(function() {
 
       unifyMatachesAndResults(resultsByCountry);
 
-      generatePage(mathesData, resultsByCountry);
+      generatePage(mathesData);
 
       $('[data-toggle="popover"]').popover().on('click', function(ev) {
         // stop the page from scrolling up
@@ -54,12 +54,11 @@ $(document).ready(function() {
     });
   }
 
-  function generatePage(mathes, results) {
+  function generatePage(mathes) {
     var source = $('#match-template').html(),
         template = Handlebars.compile(source),
         generatedHTML = template({
-          matches: mathes,
-          results: results
+          matches: mathes
         });
 
     $('#matches-container').append(generatedHTML);
