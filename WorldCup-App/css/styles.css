@@ -20,6 +20,10 @@
 	border-bottom: 2px solid #ccc;
 }
 
+#site-wrap h2 {
+	color: #eee;
+}
+
 #matches-container .country {
 	font-size: 1.3rem;
 	font-weight: bold;

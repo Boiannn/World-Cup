@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>World Cup App</title>
 	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 	<div id="site-wrap">
@@ -17,37 +17,48 @@
 	</div>
 
 	<script id="match-template" type="text/x-handlebars-template">
-	{{#each matches}}
-	<div class="jumbotron">
-		<div class="progress">
-			<div class="progress-bar" role="progressbar" aria-valuenow = "0" aria-valuemin="0"
-			aria-valuemax="90" style="width: 60%;">
+	{{#if matches}}
+		{{#each matches}}
+		<div class="jumbotron">
+
+			{{#isCurrentlyPlaying status}}
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" aria-valuenow = "0" aria-valuemin="0"
+				aria-valuemax="90" style="width: 60%;">
+				</div>
 			</div>
+			{{else}}
+			<p class="datetime">{{formatToBgDate datetime}}</p>
+			{{/isCurrentlyPlaying}}
+
+			<div class="row">
+				<div class="col-xs-6 cold-md-3">
+					<span class="country">{{home_team.country}}</span>
+					<a href="#" class="thumbnail">
+						<img src="flags/{{home_team.code}}.png" />
+					</a>
+					<span class="score">{{home_team.goals}}</span>
+				</div>
+				<div class="col-xs-6 cold-md-3">
+					<span class="country">{{away_team.country}}</span>
+					<a href="#" class="thumbnail">
+						<img src="flags/{{away_team.code}}.png" />
+					</a>
+					<span class="score">{{away_team.goals}}</span>
+				</div>
+			</div>
+			
 		</div>
-		<p class="datetime">{{datetime}}</p>
-		<div class="row">
-			<div class="col-xs-6 cold-md-3">
-				<span class="country">{{home_team.country}}</span>
-				<a href="#" class="thumbnail">
-					<img src="flags/{{home_team.code}}.png" />
-				</a>
-				<span class="score">{{home_team.goals}}</span>
-			</div>
-			<div class="col-xs-6 cold-md-3">
-				<span class="country">{{away_team.country}}</span>
-				<a href="#" class="thumbnail">
-					<img src="flags/{{away_team.code}}.png" />
-				</a>
-				<span class="score">{{away_team.goals}}</span>
-			</div>
-		</div>
-	</div>
-	{{/each}}
+		{{/each}}
+	{{else}}
+	<h2>No matches today. Check again tomorrow.</h2>
+	{{/if}}
 	</script>
 	
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="bower_components/handlebars/handlebars.min.js"></script>
-	<script src="app.js"></script>
+	<script src="script/handlebars-helpers.js"></script>
+	<script src="script/app.js"></script>
 </body>
 </html>
