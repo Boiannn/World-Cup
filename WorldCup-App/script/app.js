@@ -6,7 +6,7 @@ $(document).ready(function() {
 
   $.when(
 
-    $.getJSON('http://worldcup.sfg.io/matches', function(matches) {
+    $.getJSON('http://worldcup.sfg.io/matches/today', function(matches) {
       mathesData = matches.slice(0, 11);
     }),
     $.getJSON('http://worldcup.sfg.io/teams/results', function(results) {

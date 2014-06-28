@@ -1,4 +1,5 @@
 Handlebars.registerHelper('formatToBgDate', function(date) {
+  'use strict';
   var parsedDate = new Date(date),
       options = {
       year: 'numeric',
@@ -10,8 +11,9 @@ Handlebars.registerHelper('formatToBgDate', function(date) {
   return parsedDate.toLocaleString('bg-BG', options);
 });
 
-Handlebars.registerHelper('isCurrentlyPlaying', function(conditional, options) {
-  if(conditional === 'playing') {
+Handlebars.registerHelper('isInProgress', function(conditional, options) {
+  'use strict';
+  if(conditional === 'in progress') {
     return options.fn(this);
   } else {
     return options.inverse(this);
@@ -19,6 +21,7 @@ Handlebars.registerHelper('isCurrentlyPlaying', function(conditional, options) {
 });
 
 Handlebars.registerHelper('displayResults', function(countryObj) {
+  'use strict';
   var gamesPlayed = countryObj.games_played || 0,
       wins = countryObj.wins || 0,
       draws = countryObj.draws || 0,
