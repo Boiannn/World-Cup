@@ -85,14 +85,18 @@ $(document).ready(function() {
           $progressBar = $(this).find('.progress-bar').first(),
           minutesPassedSinceMatchStart = (timeNow - matchDateTime) / ONE_MINUTE;
 
-          if (minutesPassedSinceMatchStart > 0 &&
-              (minutesPassedSinceMatchStart <= averagePeriodLength ||
-              minutesPassedSinceMatchStart > averagePeriodLength + matchHalfTime)) {
+          if (minutesPassedSinceMatchStart > 0) {
             $progressBar.closest('.progress').removeClass('hidden');
 
-            $(this).nextAll('p.time-left').removeClass('hidden')
-            .find('span')
-            .text(Math.floor(averageMatchLength - (minutesPassedSinceMatchStart + matchHalfTime)));
+            $(this).nextAll('p.time-left').removeClass('hidden');
+
+            if (minutesPassedSinceMatchStart <= averagePeriodLength ||
+                  minutesPassedSinceMatchStart > averagePeriodLength + matchHalfTime) {
+              $(this).nextAll('p.time-left').find('span')
+              .text(Math.floor(averageMatchLength - (minutesPassedSinceMatchStart + matchHalfTime)));
+            } else {
+              $(this).nextAll('p.time-left').text('Half Time');
+            }
 
             $(this).nextAll('p.datetime').addClass('hidden');
 
