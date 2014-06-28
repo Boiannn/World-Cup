@@ -1,14 +1,8 @@
-Handlebars.registerHelper('formatToBgDate', function(date) {
+Handlebars.registerHelper('formatDate', function(date) {
   'use strict';
-  var parsedDate = new Date(date),
-      options = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric'};
+  var parsedDate = new Date(date);
 
-  return parsedDate.toLocaleString('bg-BG', options);
+  return parsedDate.toDateString() + ' ' + parsedDate.toLocaleTimeString();
 });
 
 Handlebars.registerHelper('isInProgress', function(conditional, options) {

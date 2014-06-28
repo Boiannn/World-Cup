@@ -21,15 +21,12 @@
 		{{#each matches}}
 		<div class="jumbotron">
 
-			{{#isInProgress status}}
-			<div class="progress">
-				<div class="progress-bar" role="progressbar" aria-valuenow = "0" aria-valuemin="0"
-				aria-valuemax="90" style="width: 60%;">
-				</div>
+			<div class="progress hidden" data-datetime="{{datetime}}">
+				<div class="progress-bar" role="progressbar" aria-valuemin="0"
+				aria-valuemax="100"></div>
 			</div>
-			{{else}}
-			<p class="datetime">{{formatToBgDate datetime}}</p>
-			{{/isInProgress}}
+			<p class="time-left hidden">Time remaining: <span>TIME</span> minutes</p>
+			<p class="datetime">{{formatDate datetime}}</p>
 
 			<div class="row">
 				<div class="col-xs-5">
