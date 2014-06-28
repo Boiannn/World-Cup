@@ -93,7 +93,7 @@ $(document).ready(function() {
             if (minutesPassedSinceMatchStart <= averagePeriodLength ||
                   minutesPassedSinceMatchStart > averagePeriodLength + matchHalfTime) {
               $(this).nextAll('p.time-left').find('span')
-              .text(Math.floor(averageMatchLength - (minutesPassedSinceMatchStart + matchHalfTime)));
+              .text(Math.floor(averageMatchLength - minutesPassedSinceMatchStart));
             } else {
               $(this).nextAll('p.time-left').text('Half Time');
             }
