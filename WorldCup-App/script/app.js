@@ -107,15 +107,14 @@ $(document).ready(function() {
             } else {
 
               $match.find('p.match-time-left').find('span')
-              .text(Math.floor(averageMatchLength -
-                (matchHalfTime + minutesPassedSinceMatchStart)));
+              .text(Math.floor(averageMatchLength - minutesPassedSinceMatchStart));
             }
 
             $progressBar.width(minutesPassedAsPercent + '%');
           } else {
             $match.find('div.progress').hide();
             $match.find('p.match-time-left').hide();
-            $match.nextAll('p.match-datetime').show();
+            $match.find('p.match-datetime').show();
           }
     });
   }
