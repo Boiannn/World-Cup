@@ -97,8 +97,7 @@ $(document).ready(function() {
           minutesPassedAsPercent = (minutesPassedSinceMatchStart / averageMatchLength) * 100,
           $progressBar = $match.find('.progress-bar').first();
 
-          if (minutesPassedSinceMatchStart > 0 &&
-                minutesPassedSinceMatchStart <= averageMatchLength) {
+          if (isMatchInProgress(minutesPassedSinceMatchStart, averageMatchLength)) {
             $match.find('p.match-datetime').hide();
 
             if (isMatchInHalfTime(minutesPassedSinceMatchStart,
@@ -119,6 +118,10 @@ $(document).ready(function() {
             $match.nextAll('p.match-datetime').show();
           }
     });
+  }
+
+  function isMatchInProgress(minutesPassed, matchLength) {
+    return 0 < minutesPassed && minutesPassed <= matchLength;
   }
 
   function isMatchInHalfTime(passedMinutes, periodLength, halfTimeLenght) {
