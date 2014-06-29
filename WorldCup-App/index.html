@@ -19,14 +19,14 @@
 	<script id="match-template" type="text/x-handlebars-template">
 	{{#if matches}}
 		{{#each matches}}
-		<div class="jumbotron">
+		<div class="jumbotron" data-datetime="{{datetime}}">
 
-			<div class="progress hidden" data-datetime="{{datetime}}">
+			<div class="progress">
 				<div class="progress-bar" role="progressbar" aria-valuemin="0"
 				aria-valuemax="100"></div>
 			</div>
-			<p class="time-left hidden">Time remaining: <span>TIME</span> minutes</p>
-			<p class="datetime">{{formatDate datetime}}</p>
+			<p class="match-time-left">Time remaining: <span>TIME</span> minutes</p>
+			<p class="match-datetime">{{formatDate datetime}}</p>
 
 			<div class="row">
 				<div class="col-xs-5">
@@ -38,7 +38,7 @@
 					data-content="{{displayResults home_team}}">
 						<img src="flags/{{home_team.code}}.png" />
 					</a>
-					<span class="score">{{home_team.goals}}</span>
+					<span class="score home-team">{{home_team.goals}}</span>
 				</div>
 				<div class="col-xs-2">
 					<p>vs</p>
@@ -52,7 +52,7 @@
 					data-content="{{displayResults away_team}}">
 						<img src="flags/{{away_team.code}}.png" />
 					</a>
-					<span class="score">{{away_team.goals}}</span>
+					<span class="score away-team">{{away_team.goals}}</span>
 				</div>
 			</div>
 			

@@ -64,54 +64,66 @@ $(document).ready(function() {
   function updatePage() {
     $.getJSON('http://worldcup.sfg.io/matches/today', function(matches) {
       mathesData = matches;
-      unifyCountryResults();
-      generatePage();
+      updateMatchScore();
       updateMatchProgress();
     });
 
     setTimeout(updatePage, ONE_MINUTE);
   }
 
+  function updateMatchScore() {
+    var $allMatches = $('.jumbotron');
+
+    $allMatches.each(function(index) {
+      var $homeTeamScore = $(this).find('span.score.home-team'),
+          $awayTeamScore = $(this).find('span.score.away-team');
+
+      $homeTeamScore.text(mathesData[index].home_team.goals);
+      $awayTeamScore.text(mathesData[index].away_team.goals);
+    });
+  }
+
   function updateMatchProgress() {
     var averagePeriodLength = 48,
         matchHalfTime = 15,
         averageMatchLength = 2 * averagePeriodLength + matchHalfTime,
-        $progressDivs = $('.progress'),
-        timeNow = new Date();
+        timeNow = new Date(),
+        $allMatches = $('.jumbotron');
 
-    $progressDivs.each(function(div) {
+    $allMatches.each(function() {
+      var $match = $(this),
+          matchDateTime = new Date($match.attr('data-datetime')),
+          minutesPassedSinceMatchStart = (timeNow - matchDateTime) / ONE_MINUTE,
+          minutesPassedAsPercent = (minutesPassedSinceMatchStart / averageMatchLength) * 100,
+          $progressBar = $match.find('.progress-bar').first();
 
-      var matchDateTime = new Date($(this).attr('data-datetime')),
-          $progressBar = $(this).find('.progress-bar').first(),
-          minutesPassedSinceMatchStart = (timeNow - matchDateTime) / ONE_MINUTE;
+          if (minutesPassedSinceMatchStart > 0 &&
+                minutesPassedSinceMatchStart <= averageMatchLength) {
+            $match.find('p.match-datetime').hide();
 
-          if (minutesPassedSinceMatchStart > 0) {
-            $progressBar.closest('.progress').removeClass('hidden');
+            if (isMatchInHalfTime(minutesPassedSinceMatchStart,
+                averagePeriodLength, matchHalfTime)) {
 
-            $(this).nextAll('p.time-left').removeClass('hidden');
-
-            if (minutesPassedSinceMatchStart <= averagePeriodLength ||
-                  minutesPassedSinceMatchStart > averagePeriodLength + matchHalfTime) {
-              $(this).nextAll('p.time-left').find('span')
-              .text(Math.floor(averageMatchLength - minutesPassedSinceMatchStart));
+              $match.find('p.match-time-left').find('span').text('Half Time');
             } else {
-              $(this).nextAll('p.time-left').text('Half Time');
+
+              $match.find('p.match-time-left').find('span')
+              .text(Math.floor(averageMatchLength -
+                (matchHalfTime + minutesPassedSinceMatchStart)));
             }
 
-            $(this).nextAll('p.datetime').addClass('hidden');
-
-            var minutesPassedAsPercent = (minutesPassedSinceMatchStart / averageMatchLength) * 100;
             $progressBar.width(minutesPassedAsPercent + '%');
-          }
-
-          if (minutesPassedSinceMatchStart > averageMatchLength) {
-            $progressBar.closest('.progress').addClass('hidden');
-            $(this).nextAll('p.time-left').addClass('hidden');
-            $(this).nextAll('p.datetime').removeClass('hidden');
+          } else {
+            $match.find('div.progress').hide();
+            $match.find('p.match-time-left').hide();
+            $match.nextAll('p.match-datetime').show();
           }
     });
+  }
 
-    setTimeout(updateMatchProgress, ONE_MINUTE);
+  function isMatchInHalfTime(passedMinutes, periodLength, halfTimeLenght) {
+    return periodLength < passedMinutes &&
+                          passedMinutes < periodLength + halfTimeLenght;
   }
 
 });
