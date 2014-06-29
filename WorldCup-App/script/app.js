@@ -111,7 +111,7 @@ $(document).ready(function() {
           }
     });
 
-    setTimeout(updateMatchProgress, 1000*60);
+    setTimeout(updateMatchProgress, ONE_MINUTE);
   }
 
 });
